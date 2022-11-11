@@ -1,12 +1,9 @@
 import { CognitoIdentityProvider } from "@aws-sdk/client-cognito-identity-provider";
 import { awsconfig, userPoolId } from "../config/awsconfig.js";
-import AWS from "aws-sdk";
 
-AWS.config.update(awsconfig);
-var cog = new AWS.CognitoIdentityServiceProvider();
 export default class Cognito {
   constructor() {
-    this.cognito = new CognitoIdentityProvider(awsconfig);
+    this.cog = new CognitoIdentityProvider(awsconfig);
   }
 
   async listUsers() {
@@ -25,3 +22,23 @@ export default class Cognito {
     }
   }
 }
+
+// var cog = new CognitoIdentityProvider(awsconfig);
+
+// async function listUsers() {
+//   const params = {
+//     UserPoolId: userPoolId,
+//     AttributesToGet: ["email"],
+//     Limit: 10,
+//   };
+
+//   try {
+//     const data = await cog.listUsers(params);
+
+//     data.Users.map((v, i) => console.log(v));
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+// listUsers();
